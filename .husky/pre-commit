@@ -1,3 +1,0 @@
-echo "let's check the code! =^ . ｡.^="
-
-pnpm lint-staged
