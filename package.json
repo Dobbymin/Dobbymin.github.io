@@ -1,10 +1,13 @@
 {
-  "name": "dobblog",
+  "name": "Dobbymin.github.io",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Dobbymin.github.io",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "predeploy": "pnpm run build",
+    "deploy": "touch out/.nojekyll && gh-pages -d out --dotfiles",
     "start": "next start",
     "lint": "next lint --no-cache",
     "format": "prettier --write .",
@@ -23,6 +26,7 @@
     "@radix-ui/react-slot": "^1.2.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "gh-pages": "^6.3.0",
     "lucide-react": "^0.507.0",
     "next": "15.3.1",
     "next-themes": "^0.4.6",
