@@ -6,6 +6,9 @@ node_modules
 out
 public
 
+# docs 관련 파일 무시
+README.md
+
 # 환경설정 파일 무시
 *.config.js
 *.config.ts
