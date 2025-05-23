@@ -2,15 +2,17 @@
 node_modules
 
 # 빌드된 파일과 관련 폴더 무시
-dist
+.next
+out
 public
 
+# docs 관련 파일 무시
+README.md
+
 # 환경설정 파일 무시
-*.lock
 *.config.js
 *.config.ts
 *.config.mjs
-*.md
 
 # Git 관련 파일 무시
 .github
