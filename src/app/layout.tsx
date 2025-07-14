@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono, Lemon } from 'next/font/google';
+import { Fira_Code, Geist, Geist_Mono, Lemon } from 'next/font/google';
 import localFont from 'next/font/local';
 
 import { Toaster } from '@/shared';
@@ -24,11 +24,11 @@ const pretendard = localFont({
   variable: '--font-pretendard',
 });
 
-const suit = localFont({
-  src: '../../public/fonts/SUIT-Variable.woff2',
+const firaCode = Fira_Code({
+  variable: '--font-fira-code',
   display: 'swap',
-  weight: '100 900',
-  variable: '--font-suit',
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
 });
 
 const lemon = Lemon({
@@ -51,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${lemon.variable} ${pretendard.variable} ${suit.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${pretendard.variable} ${lemon.variable} ${firaCode.variable} antialiased`}
       >
         <BlogLayout>{children}</BlogLayout>
         {/* <main className='w-full items-center justify-center'></main> */}
