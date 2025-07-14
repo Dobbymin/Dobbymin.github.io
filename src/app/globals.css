@@ -10,7 +10,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-pretendard: var(--font-pretendard);
-  --font-firaCode: var(--font-fira-code);
+  --font-fira-code: var(--font-fira-code);
   --font-lemon: var(--font-lemon);
   --color-blog-pink: var(--blog-pink);
   --color-blog-blue: var(--blog-blue);
@@ -70,6 +70,7 @@
   --header-padding-x: 1rem;
   --header-padding-y: 3rem;
   --card: oklch(1 0 0);
+  --blog-purple: oklch(0.6095 0.2382 332.15);
   --blog-pink: oklch(0.5717 0.2063 13.44);
   --blog-blue: oklch(0.5332 0.2106 263.54);
   --blog-green: oklch(0.684 0.1136 154.11);
