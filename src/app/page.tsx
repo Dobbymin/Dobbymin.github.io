@@ -1,9 +1,9 @@
 import { getAllPosts } from '@/shared/lib';
 
-import { PostList } from '@/features';
+import { PostListSection } from '@/features';
 
 export default function Home() {
   const allPosts = getAllPosts();
 
-  return <PostList posts={allPosts} />;
+  return <PostListSection posts={allPosts} />;
 }
