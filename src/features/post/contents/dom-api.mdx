@@ -33,26 +33,29 @@ DOM API를 사용해 요소를 찾을 때는, 항상 모든 것의 시작점인 
 
 ### 단일 요소 선택 (하나만 찾기)
 
-- **`document.getElementById('id이름')`**
-  - 가장 빠르고 고전적인 방법. 고유한 `id` 속성 값으로 요소를 찾는다.
-  - `id`는 문서에서 유일해야 하므로, 항상 하나의 요소만 반환한다.
-  ```tsx
-  // id가 "color"인 요소를 찾아서 $color 변수에 담는다.
-  const $color = document.getElementById('color');
-  console.log($color); // <div id="color">...</div>
-  ```
-- **`document.querySelector('CSS 선택자')`**
+**`document.getElementById('id이름')`**
 
-  - `id`, `class`, `태그 이름` 등 **CSS 선택자 문법**을 그대로 사용해서 요소를 찾는다.
-  - 조건을 만족하는 요소가 여러 개라도, **가장 첫 번째 요소 하나만** 반환한다.
+- 가장 빠르고 고전적인 방법. 고유한 `id` 속성 값으로 요소를 찾는다.
+- `id`는 문서에서 유일해야 하므로, 항상 하나의 요소만 반환한다.
 
-  ```jsx
-  // class가 "animal-info"인 div 요소를 찾는다.
-  const $animalInfo = document.querySelector('div.animal-info');
+```tsx
+// id가 "color"인 요소를 찾아서 $color 변수에 담는다.
+const $color = document.getElementById('color');
+console.log($color); // <div id="color">...</div>
+```
 
-  // id가 "age"인 div 요소를 찾는다.
-  const $age = document.querySelector('div#age');
-  ```
+**`document.querySelector('CSS 선택자')`**
+
+- `id`, `class`, `태그 이름` 등 **CSS 선택자 문법**을 그대로 사용해서 요소를 찾는다.
+- 조건을 만족하는 요소가 여러 개라도, **가장 첫 번째 요소 하나만** 반환한다.
+
+```jsx
+// class가 "animal-info"인 div 요소를 찾는다.
+const $animalInfo = document.querySelector('div.animal-info');
+
+// id가 "age"인 div 요소를 찾는다.
+const $age = document.querySelector('div#age');
+```
 
 ### 여러 요소 선택 (조건에 맞는 것 모두 찾기)
 
