@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     siteName: 'Dobby is Free',
     images: [
       {
-        url: '/logo.png',
+        url: 'https://dobbymin.github.io/logo.png',
         width: 1200,
         height: 630,
         alt: 'Dobby is Free Logo',
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     title: 'Dobby is Free',
     description:
       '김도비의 개발 블로그 - 프론트엔드 개발, 웹 기술, 그리고 일상의 기록',
-    images: ['/logo.png'],
+    images: ['https://dobbymin.github.io/logo.png'],
   },
   robots: {
     index: true,
