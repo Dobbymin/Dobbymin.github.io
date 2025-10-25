@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { MDXPostMeta } from '@/shared/types';
 
@@ -12,29 +12,25 @@ type TabsProps = {
 export const Tabs = ({ posts, onFilterChange }: TabsProps) => {
   const [selected, setSelected] = useState(0);
 
-  // 게시글에서 카테고리 추출 및 카운트
-  const getCategoryCounts = () => {
-    const categoryCounts: Record<string, number> = {};
+  // 게시글에서 카테고리 추출 및 카운트 (메모이제이션)
+  const tabs = useMemo(() => {
+    const categoryCounts = posts.reduce<Record<string, number>>(
+      (acc, { category }) => {
+        acc[category] = (acc[category] || 0) + 1;
+        return acc;
+      },
+      {},
+    );
 
-    posts.forEach((post) => {
-      const category = post.category;
-      categoryCounts[category] = (categoryCounts[category] || 0) + 1;
-    });
-
-    return categoryCounts;
-  };
-
-  const categoryCounts = getCategoryCounts();
-
-  // All 탭 + 각 카테고리 탭 생성
-  const tabs = [
-    { name: 'All', count: posts.length, category: null },
-    ...Object.entries(categoryCounts).map(([category, count]) => ({
-      name: category,
-      count,
-      category,
-    })),
-  ];
+    return [
+      { name: 'All', count: posts.length, category: null },
+      ...Object.entries(categoryCounts).map(([category, count]) => ({
+        name: category,
+        count,
+        category,
+      })),
+    ];
+  }, [posts]);
 
   const handleTabClick = (idx: number) => {
     setSelected(idx);
