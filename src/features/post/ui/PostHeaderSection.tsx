@@ -1,3 +1,4 @@
+import { getCategoryColor } from '@/shared/utils';
 import { CalendarDays } from 'lucide-react';
 
 import { PostHeader } from '@/entities';
@@ -7,20 +8,6 @@ type PostHeaderSectionProps = {
 };
 
 export const PostHeaderSection = ({ post }: PostHeaderSectionProps) => {
-  // 카테고리별 색상 매핑
-  const getCategoryColor = (category: string) => {
-    switch (category.toLowerCase()) {
-      case 'develop':
-        return 'text-blog-blue';
-      case 'daily':
-        return 'text-blog-pink';
-      case 'review':
-        return 'text-blog-purple';
-      default:
-        return 'text-blog-green';
-    }
-  };
-
   return (
     <header className='w-full bg-white p-6 md:p-8'>
       <div className='flex flex-col gap-4'>
