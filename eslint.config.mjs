@@ -22,6 +22,7 @@ const eslintConfig = [
       'unused-imports': unusedImports,
     },
     rules: {
+      '@typescript-eslint/no-unused-vars': 'warn',
       'react/jsx-sort-props': [
         'warn',
         {
