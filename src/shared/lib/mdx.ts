@@ -31,6 +31,7 @@ export function getAllPosts(): MDXPostMeta[] {
         category: matterResult.data.category || '기타',
         date: matterResult.data.date || new Date().toISOString().split('T')[0],
         description: matterResult.data.description || '',
+        thumbnail: matterResult.data.thumbnail,
       };
     });
 
@@ -64,6 +65,7 @@ export function getPost(slug: string): MDXPost | null {
       category: matterResult.data.category || '기타',
       date: matterResult.data.date || new Date().toISOString().split('T')[0],
       description: matterResult.data.description || '',
+      thumbnail: matterResult.data.thumbnail,
       content: matterResult.content,
     };
   } catch (error) {
