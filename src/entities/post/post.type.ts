@@ -5,6 +5,7 @@ export type PostBase = {
   description: string;
   date: string;
   content: string;
+  thumbnail?: string;
 };
 
 // 컨텐츠 섹션에 필요한 정보만
