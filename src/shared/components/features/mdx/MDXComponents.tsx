@@ -3,7 +3,7 @@ import type { MDXComponents } from 'mdx/types';
 export const mdxComponents: MDXComponents = {
   // 제목 스타일링 (반응형)
   h1: ({ children }) => (
-    <h1 className='mb-6 border-b-2 border-blog-gray-400 pb-3 text-2xl font-bold text-blog-black md:text-4xl'>
+    <h1 className='mb-6 border-b-2 border-blog-gray-400 pt-4 pb-3 text-2xl font-bold text-blog-black md:text-4xl'>
       {children}
     </h1>
   ),
