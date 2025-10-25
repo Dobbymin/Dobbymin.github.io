@@ -44,7 +44,7 @@ export const PostCard = ({ post }: PostCardProps) => {
 
   return (
     <Link href={`/post/${post.slug}`}>
-      <div className='flex w-full flex-col overflow-hidden bg-white shadow-lg transition-transform duration-200 transform-content hover:scale-105'>
+      <div className='flex h-full min-h-[300px] w-full flex-col overflow-hidden bg-white shadow-lg transition-transform duration-200 transform-content hover:scale-105'>
         <div className='relative aspect-video w-full'>
           {post.thumbnail ? (
             <Image
@@ -63,7 +63,7 @@ export const PostCard = ({ post }: PostCardProps) => {
             </div>
           )}
         </div>
-        <div className='flex h-full w-full flex-col justify-between p-3'>
+        <div className='flex h-full w-full flex-col justify-between p-4'>
           <div className='flex flex-col gap-2'>
             <div
               className={`text-sm font-bold ${getCategoryColor(post.category)}`}
