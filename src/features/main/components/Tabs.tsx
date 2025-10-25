@@ -1,8 +1,8 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-
 import { MDXPostMeta } from '@/shared/types';
+
+import { useTabSelection, useTabs } from '../hooks';
 
 type TabsProps = {
   posts: MDXPostMeta[];
@@ -10,31 +10,12 @@ type TabsProps = {
 };
 
 export const Tabs = ({ posts, onFilterChange }: TabsProps) => {
-  const [selected, setSelected] = useState(0);
+  const { tabs } = useTabs(posts);
+  const { selectedIndex, selectTab } = useTabSelection();
 
-  // 게시글에서 카테고리 추출 및 카운트 (메모이제이션)
-  const tabs = useMemo(() => {
-    const categoryCounts = posts.reduce<Record<string, number>>(
-      (acc, { category }) => {
-        acc[category] = (acc[category] || 0) + 1;
-        return acc;
-      },
-      {},
-    );
-
-    return [
-      { name: 'All', count: posts.length, category: null },
-      ...Object.entries(categoryCounts).map(([category, count]) => ({
-        name: category,
-        count,
-        category,
-      })),
-    ];
-  }, [posts]);
-
-  const handleTabClick = (idx: number) => {
-    setSelected(idx);
-    onFilterChange(tabs[idx].category);
+  const onTabClick = (index: number) => {
+    selectTab(index);
+    onFilterChange(tabs[index].category);
   };
 
   return (
@@ -44,11 +25,11 @@ export const Tabs = ({ posts, onFilterChange }: TabsProps) => {
           <div
             key={tab.name}
             className={`flex shrink-0 cursor-pointer items-center justify-center gap-2 border-r px-4 py-2 text-sm font-semibold transition-colors last:border-r-0 md:px-5 ${
-              selected === idx
+              selectedIndex === idx
                 ? 'bg-blog-gray-100 text-blog-black'
                 : 'bg-blog-gray-200 text-blog-gray-600 hover:font-bold'
             }`}
-            onClick={() => handleTabClick(idx)}
+            onClick={() => onTabClick(idx)}
           >
             <p className='whitespace-nowrap'>{tab.name}</p>
             <p className='whitespace-nowrap text-blog-green'>({tab.count})</p>
