@@ -1,18 +1,11 @@
-'use client';
-
-import { useState } from 'react';
+import { getAllPosts } from '@/shared/lib';
 
 import { PostCard, Tabs } from '@/shared';
 import { Grid } from '@/widgets';
 
 export default function Home() {
-  const posts = Array.from({ length: 9 }); // 임시 데이터
+  const allPosts = getAllPosts();
 
-  const [search, setSearch] = useState('');
-
-  const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-  };
   return (
     <div className='flex flex-col items-center justify-center gap-10'>
       <Tabs />
@@ -23,8 +16,8 @@ export default function Home() {
         justifyContent='center'
         maxWidth='7xl'
       >
-        {posts.map((_, index) => (
-          <PostCard key={index} />
+        {allPosts.map((post) => (
+          <PostCard key={post.slug} post={post} />
         ))}
       </Grid>
     </div>
