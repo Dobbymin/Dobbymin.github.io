@@ -23,16 +23,45 @@ export const PostCard = ({ post }: PostCardProps) => {
     }
   };
 
+  // slug를 기반으로 랜덤 색상 생성 (같은 slug는 항상 같은 색상)
+  const getRandomBgColor = (slug: string) => {
+    const colors = [
+      'bg-blog-blue',
+      'bg-blog-pink',
+      'bg-blog-purple',
+      'bg-blog-green',
+      'bg-blog-yellow',
+    ];
+
+    // slug를 숫자로 변환하여 일관된 색상 선택
+    let hash = 0;
+    for (let i = 0; i < slug.length; i++) {
+      hash = slug.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const index = Math.abs(hash) % colors.length;
+    return colors[index];
+  };
+
   return (
     <Link href={`/post/${post.slug}`}>
       <div className='flex w-full flex-col overflow-hidden bg-white shadow-lg transition-transform duration-200 transform-content hover:scale-105'>
         <div className='relative aspect-video w-full'>
-          <Image
-            fill
-            alt={post.title}
-            className='object-cover'
-            src='https://picsum.photos/400/225'
-          />
+          {post.thumbnail ? (
+            <Image
+              fill
+              alt={post.title}
+              className='object-cover'
+              src={post.thumbnail}
+            />
+          ) : (
+            <div
+              className={`flex h-full w-full items-center justify-center p-8 ${getRandomBgColor(post.slug)}`}
+            >
+              <p className='text-center text-xl font-bold text-white md:text-xl'>
+                {post.title}
+              </p>
+            </div>
+          )}
         </div>
         <div className='flex h-full w-full flex-col justify-between p-3'>
           <div className='flex flex-col gap-2'>
