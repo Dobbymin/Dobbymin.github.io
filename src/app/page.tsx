@@ -1,23 +1,31 @@
-import { Button, PostCard } from '@/shared';
+'use client';
+
+import { useState } from 'react';
+
+import { PostCard, Tabs } from '@/shared';
 import { Grid } from '@/widgets';
 
 export default function Home() {
+  const posts = Array.from({ length: 9 }); // 임시 데이터
+
+  const [search, setSearch] = useState('');
+
+  const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
   return (
-    <div className='flex w-full flex-col items-start justify-start'>
-      <div className='flex gap-3 py-2'>
-        <Button className='px-2 font-bold'>전체 (49)</Button>
-        <Button className='px-2 font-bold' variant='ghost'>
-          개발 (3)
-        </Button>
-        <Button className='px-2 font-bold' variant='ghost'>
-          일상 (9)
-        </Button>
-        <Button className='px-2 font-bold' variant='ghost'>
-          회고 (4)
-        </Button>
-      </div>
-      <Grid columns={{ base: 1, md: 2, lg: 4 }} gap={16}>
-        <PostCard />
+    <div className='flex flex-col items-center justify-center gap-10'>
+      <Tabs />
+      <Grid
+        className='w-full px-4 md:px-8 lg:px-0'
+        cols='grid-cols-1 md:grid-cols-2 lg:grid-cols-[270px_270px_270px]'
+        gap={5}
+        justifyContent='center'
+        maxWidth='7xl'
+      >
+        {posts.map((_, index) => (
+          <PostCard key={index} />
+        ))}
       </Grid>
     </div>
   );
