@@ -5,7 +5,7 @@ import { getAllPostSlugs, getPost } from '@/shared/lib';
 import { PostContentsSection, PostHeaderSection } from '@/features';
 
 type PostDetailPageProps = {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 };
 
 export async function generateStaticParams() {
@@ -14,7 +14,7 @@ export async function generateStaticParams() {
 }
 
 export default async function PostDetailPage({ params }: PostDetailPageProps) {
-  const { id } = await params;
+  const { id } = params;
   const post = getPost(id);
 
   if (!post) {
