@@ -5,6 +5,7 @@ import path from 'path';
 import { MDXPost, MDXPostMeta } from '../types';
 
 const postsDirectory = path.join(process.cwd(), 'src/features/post/contents');
+const SUPPORTED_EXTENSIONS = ['.md', '.mdx'] as const;
 
 // 모든 게시글 메타데이터 가져오기
 export function getAllPosts(): MDXPostMeta[] {
@@ -16,7 +17,9 @@ export function getAllPosts(): MDXPostMeta[] {
   const fileNames = fs.readdirSync(postsDirectory);
 
   const allPostsData = fileNames
-    .filter((fileName) => fileName.endsWith('.md') || fileName.endsWith('.mdx'))
+    .filter((fileName) =>
+      SUPPORTED_EXTENSIONS.some((ext) => fileName.endsWith(ext)),
+    )
     .map((fileName) => {
       const slug = fileName.replace(/\.mdx?$/, '');
       const fullPath = path.join(postsDirectory, fileName);
@@ -42,19 +45,20 @@ export function getAllPosts(): MDXPostMeta[] {
 // 특정 게시글 가져오기 (content 포함)
 export function getPost(slug: string): MDXPost | null {
   try {
-    const fullPath = path.join(postsDirectory, `${slug}.md`);
-    let fileContents: string;
+    let fileContents: string | null = null;
 
-    // .md 파일 먼저 확인, 없으면 .mdx 확인
-    if (fs.existsSync(fullPath)) {
-      fileContents = fs.readFileSync(fullPath, 'utf8');
-    } else {
-      const mdxPath = path.join(postsDirectory, `${slug}.mdx`);
-      if (fs.existsSync(mdxPath)) {
-        fileContents = fs.readFileSync(mdxPath, 'utf8');
-      } else {
-        return null;
+    // 지원하는 확장자를 순회하며 파일 찾기
+    for (const ext of SUPPORTED_EXTENSIONS) {
+      const fullPath = path.join(postsDirectory, `${slug}${ext}`);
+      if (fs.existsSync(fullPath)) {
+        fileContents = fs.readFileSync(fullPath, 'utf8');
+        break;
       }
+    }
+
+    // 파일을 찾지 못한 경우
+    if (!fileContents) {
+      return null;
     }
 
     const matterResult = matter(fileContents);
@@ -83,6 +87,8 @@ export function getAllPostSlugs(): string[] {
   const fileNames = fs.readdirSync(postsDirectory);
 
   return fileNames
-    .filter((fileName) => fileName.endsWith('.md') || fileName.endsWith('.mdx'))
+    .filter((fileName) =>
+      SUPPORTED_EXTENSIONS.some((ext) => fileName.endsWith(ext)),
+    )
     .map((fileName) => fileName.replace(/\.mdx?$/, ''));
 }

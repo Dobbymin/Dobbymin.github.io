@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { MDXPostMeta } from '@/shared/types';
+import { getCategoryColor, getRandomBgColor } from '@/shared/utils';
 import { CalendarDays } from 'lucide-react';
 
 type PostCardProps = {
@@ -9,39 +10,6 @@ type PostCardProps = {
 };
 
 export const PostCard = ({ post }: PostCardProps) => {
-  // 카테고리별 색상 매핑
-  const getCategoryColor = (category: string) => {
-    switch (category.toLowerCase()) {
-      case 'develop':
-        return 'text-blog-blue';
-      case 'daily':
-        return 'text-blog-pink';
-      case 'review':
-        return 'text-blog-purple';
-      default:
-        return 'text-blog-green';
-    }
-  };
-
-  // slug를 기반으로 랜덤 색상 생성 (같은 slug는 항상 같은 색상)
-  const getRandomBgColor = (slug: string) => {
-    const colors = [
-      'bg-blog-blue',
-      'bg-blog-pink',
-      'bg-blog-purple',
-      'bg-blog-green',
-      'bg-blog-yellow',
-    ];
-
-    // slug를 숫자로 변환하여 일관된 색상 선택
-    let hash = 0;
-    for (let i = 0; i < slug.length; i++) {
-      hash = slug.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    const index = Math.abs(hash) % colors.length;
-    return colors[index];
-  };
-
   return (
     <Link href={`/post/${post.slug}`}>
       <div className='flex h-full min-h-[300px] w-full flex-col overflow-hidden bg-white shadow-lg transition-transform duration-200 transform-content hover:scale-105'>
