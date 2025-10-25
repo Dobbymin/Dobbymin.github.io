@@ -1,3 +1,3 @@
-export * from './Header';
-export * from './Footer';
-export * from './PostCard';
+export * from './card';
+export * from './layout';
+export * from './tabs';
