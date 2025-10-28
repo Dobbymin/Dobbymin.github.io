@@ -1,5 +1,7 @@
 import type { MDXComponents } from 'mdx/types';
 
+import { YouTube } from '../youtube';
+
 export const mdxComponents: MDXComponents = {
   // 제목 스타일링 (반응형)
   h1: ({ children }) => (
@@ -121,4 +123,6 @@ export const mdxComponents: MDXComponents = {
       {children}
     </td>
   ),
+
+  YouTube,
 };
