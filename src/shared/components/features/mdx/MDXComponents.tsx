@@ -1,5 +1,8 @@
+import Image, { ImageProps } from 'next/image';
+
 import type { MDXComponents } from 'mdx/types';
 
+import { CustomImageProps } from '../../../types';
 import { YouTube } from '../youtube';
 
 export const mdxComponents: MDXComponents = {
@@ -76,6 +79,15 @@ export const mdxComponents: MDXComponents = {
     <pre className='mb-4 overflow-x-auto rounded-lg bg-[#2d2d2d] p-4 text-sm shadow-md'>
       {children}
     </pre>
+  ),
+
+  img: (props) => (
+    <Image
+      {...(props as ImageProps)}
+      className='mx-auto mb-4 h-auto rounded-lg'
+      height={600}
+      width={600}
+    />
   ),
 
   // 링크
