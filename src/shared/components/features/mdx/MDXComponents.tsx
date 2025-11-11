@@ -56,7 +56,7 @@ export const mdxComponents: MDXComponents = {
 
   // 인용구
   blockquote: ({ children }) => (
-    <blockquote className='my-4 border-l-4 border-blog-green bg-blog-gray-100 py-2 pl-4 text-sm text-blog-black md:text-base [&>:last-child]:mb-0'>
+    <blockquote className='my-4 border-l-4 border-blog-green bg-blog-gray-100 py-5 pr-6 pl-4 text-sm text-blog-black md:text-base [&>:last-child]:mb-0'>
       {children}
     </blockquote>
   ),
