@@ -76,21 +76,25 @@ Cold Start의 '코드 다운로드' 단계는 파일 크기에 비례하여 시�
 
 ## Cold Start 해결 및 최적화 방안
 
-1. 번들 최적화 (Tree Shaking)
-   사용하지 않는 코드를 제거하고, 거대한 라이브러리 사용을 지양하여 번들 크기를 줄인다. (예: lodash 전체 import 대신 필요한 함수만 import)
+### 1. 번들 최적화 (Tree Shaking)
 
-2. DB 연결 관리 최적화
-   함수 외부(Global Scope)에 DB 연결 객체를 캐싱하여, Warm Start 시에는 재연결 없이 기존 연결을 재사용하도록 코드를 작성해야 한다.
+사용하지 않는 코드를 제거하고, 거대한 라이브러리 사용을 지양하여 번들 크기를 줄인다. (예: lodash 전체 import 대신 필요한 함수만 import)
 
-3. Edge Functions 활용
-   Node.js 런타임보다 훨씬 가벼운 V8 기반의 Edge Runtime을 사용하면 Cold Start를 거의 0에 가깝게 줄일 수 있다. (단, Express는 Edge Runtime에서 완벽하게 호환되지 않을 수 있음)
+### 2. DB 연결 관리 최적화
 
-4. Serverless에 맞는 아키텍처 변경
-   가능하다면 Express라는 거대 프레임워크 대신, Next.js의 Route Handlers를 사용하여 각 엔드포인트를 개별 함수로 분리하는 것이 Vercel 플랫폼 최적화 관점에서 가장 유리하다.
+함수 외부(Global Scope)에 DB 연결 객체를 캐싱하여, Warm Start 시에는 재연결 없이 기존 연결을 재사용하도록 코드를 작성해야 한다.
+
+### 3. Edge Functions 활용
+
+Node.js 런타임보다 훨씬 가벼운 V8 기반의 Edge Runtime을 사용하면 Cold Start를 거의 0에 가깝게 줄일 수 있다. (단, Express는 Edge Runtime에서 완벽하게 호환되지 않을 수 있음)
+
+### 4. Serverless에 맞는 아키텍처 변경
+
+가능하다면 Express라는 거대 프레임워크 대신, Next.js의 Route Handlers를 사용하여 각 엔드포인트를 개별 함수로 분리하는 것이 Vercel 플랫폼 최적화 관점에서 가장 유리하다.
 
 # WebSocket 를 Vercel 로 배포하면 안되는 이유
 
-> ### [공식문서]
+> **[공식문서]**
 >
 > - [Publish and Subscribe to Realtime Data on Vercel](https://vercel.com/guides/publish-and-subscribe-to-realtime-data-on-vercel)
 > - [Vercel Docs - websockets](https://vercel.com/docs/limits#websockets)
@@ -103,8 +107,8 @@ WebSocket은 지속적으로 연결을 유지 (구독) 해야한다. 하지만 V
 
 ### 참고자료
 
-- [서버리스 아키텍처(Serverless Architecture)와 콜드 스타트(Cold Start)](https://velog.io/@shagrat/%EC%84%9C%EB%B2%84%EB%A6%AC%EC%8A%A4-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98Serverless-Architecture%EC%99%80-%EC%BD%9C%EB%93%9C-%EC%8A%A4%ED%83%80%ED%8A%B8Cold-Start)
+[서버리스 아키텍처(Serverless Architecture)와 콜드 스타트(Cold Start)](https://velog.io/@shagrat/%EC%84%9C%EB%B2%84%EB%A6%AC%EC%8A%A4-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98Serverless-Architecture%EC%99%80-%EC%BD%9C%EB%93%9C-%EC%8A%A4%ED%83%80%ED%8A%B8Cold-Start)
 
-- [Vercel과 EC2 배포 시 무슨 차이가 있을까? (서버리스와 Cold Start)](https://sollogging.tistory.com/93#google_vignette)
+[Vercel과 EC2 배포 시 무슨 차이가 있을까? (서버리스와 Cold Start)](https://sollogging.tistory.com/93#google_vignette)
 
-- [How can I improve function cold start performance on Vercel?](https://vercel.com/guides/how-can-i-improve-serverless-function-lambda-cold-start-performance-on-vercel)
+[How can I improve function cold start performance on Vercel?](https://vercel.com/guides/how-can-i-improve-serverless-function-lambda-cold-start-performance-on-vercel)
