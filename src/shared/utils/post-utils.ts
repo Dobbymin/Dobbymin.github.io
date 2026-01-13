@@ -7,6 +7,8 @@ export const getCategoryColor = (category: string): string => {
       return 'text-blog-pink';
     case 'review':
       return 'text-blog-purple';
+    case 'database':
+      return 'text-blog-yellow';
     default:
       return 'text-blog-green';
   }
